@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { Shield, Mail } from 'lucide-react';
 import Link from 'next/link';
+import ReactCountryFlag from "react-country-flag";
 import { ScrollHint } from '@/components/ScrollHint';
 
 export default function PrivacyPage() {
@@ -54,7 +55,18 @@ export default function PrivacyPage() {
 
             {/* ========== BAHASA INDONESIA ========== */}
             <div>
-              <h2 className="text-2xl font-bold text-orange-400 mb-6">🇮🇩 Bahasa Indonesia</h2>
+              <h2 className="text-2xl font-bold text-orange-400 mb-6 flex items-center gap-3">
+                <ReactCountryFlag
+                  countryCode="ID"
+                  svg
+                  style={{
+                    width: "1.5em",
+                    height: "1.5em",
+                  }}
+                  title="Indonesia"
+                />
+                Bahasa Indonesia
+              </h2>
 
               <p className="text-gray-300 leading-relaxed mb-8">
                 MateGroup berkomitmen melindungi data pribadi pengguna sesuai dengan peraturan perlindungan data yang berlaku.
@@ -119,7 +131,18 @@ export default function PrivacyPage() {
 
             {/* ========== ENGLISH ========== */}
             <div>
-              <h2 className="text-2xl font-bold text-orange-400 mb-6">🇬🇧 English</h2>
+              <h2 className="text-2xl font-bold text-orange-400 mb-6 flex items-center gap-3">
+                <ReactCountryFlag
+                  countryCode="GB"
+                  svg
+                  style={{
+                    width: "1.5em",
+                    height: "1.5em",
+                  }}
+                  title="United Kingdom"
+                />
+                English
+              </h2>
 
               <p className="text-gray-300 leading-relaxed mb-8">
                 MateGroup is committed to protecting user personal data in accordance with applicable data protection regulations.

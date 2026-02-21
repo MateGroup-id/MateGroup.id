@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { FileText, Mail } from 'lucide-react';
 import Link from 'next/link';
 import { ScrollHint } from '@/components/ScrollHint';
+import { ReactCountryFlag } from 'react-country-flag';
 
 export default function TermsPage() {
   const sectionVariants = {
@@ -54,7 +55,18 @@ export default function TermsPage() {
 
             {/* ========== BAHASA INDONESIA ========== */}
             <div>
-              <h2 className="text-2xl font-bold text-orange-400 mb-6">🇮🇩 Bahasa Indonesia</h2>
+              <h2 className="text-2xl font-bold text-orange-400 mb-6 flex items-center gap-3">
+                <ReactCountryFlag
+                  countryCode="ID"
+                  svg
+                  style={{
+                    width: "1.5em",
+                    height: "1.5em",
+                  }}
+                  title="Indonesia"
+                />
+                Bahasa Indonesia
+              </h2>
 
               <p className="text-gray-300 leading-relaxed mb-8">
                 Dengan mengakses atau menggunakan layanan MateGroup, pengguna dianggap telah membaca, memahami, dan menyetujui seluruh ketentuan berikut:
@@ -151,7 +163,18 @@ export default function TermsPage() {
 
             {/* ========== ENGLISH ========== */}
             <div>
-              <h2 className="text-2xl font-bold text-orange-400 mb-6">🇬🇧 English</h2>
+              <h2 className="text-2xl font-bold text-orange-400 mb-6 flex items-center gap-3">
+                <ReactCountryFlag
+                  countryCode="GB"
+                  svg
+                  style={{
+                    width: "1.5em",
+                    height: "1.5em",
+                  }}
+                  title="United Kingdom"
+                />
+                English
+              </h2>
 
               <p className="text-gray-300 leading-relaxed mb-8">
                 By accessing or using MateGroup services, users agree to the following terms:

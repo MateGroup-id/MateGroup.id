@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/dist/client/script";
+import { Analytics } from "@vercel/analytics/next"
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -17,7 +19,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "MateGroup - SaaS Solutions & Digital Services",
-  description: "Enterprise SaaS solutions and digital services for modern businesses. From AI-powered tools to collaborative platforms. Transform your business with cutting-edge technology.",
+  description: "Enterprise SaaS solutions and digital services for modern businesses.",
 };
 
 export default function RootLayout({
@@ -36,6 +38,21 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <Analytics />
+
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-7YQ9XHXK3Y"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-7YQ9XHXK3Y');
+          `}
+        </Script>
       </body>
     </html>
   );
