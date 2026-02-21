@@ -1,0 +1,107 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+:root {
+  --primary-orange: #f58220;
+  --radius: 0.625rem;
+}
+
+@theme inline {
+  --color-primary-orange: var(--primary-orange);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+}
+
+body {
+  font-family: var(--font-sans);
+}
+
+html[data-scroll-behavior="smooth"] {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar menggunakan aksen oranye */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(245, 130, 32, 0.8);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(245, 130, 32, 0.5);
+}
+
+/* Glass effect dengan border charcoal */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* Navigation link styles */
+.nav-link {
+  position: relative;
+  color: #a8adb8;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.875rem;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #f58220, #fca311);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #f58220;
+  background: rgba(245, 130, 32, 0.1);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(245, 130, 32, 0.25);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-link.active {
+  color: #f58220;
+  background: rgba(245, 130, 32, 0.15);
+}
+
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* Selection styles */
+::selection {
+  background: rgba(245, 130, 32, 0.3);
+  color: #ffffff;
+}
+
+::-moz-selection {
+  background: rgba(245, 130, 32, 0.3);
+  color: #ffffff;
+}
