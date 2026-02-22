@@ -1,14 +1,18 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import { motion } from 'framer-motion';
-import Link from 'next/link';
 import { ArrowRight, Zap, Users, Target, Rocket, BarChart3, Shield, CheckCircle2 } from 'lucide-react';
 import { AnimatedButton } from '@/components/AnimatedButton';
 import { GlassCard } from '@/components/GlassCard';
 import { FeatureCard } from '@/components/FeatureCard';
 import { StatCard } from '@/components/StatCard';
-import { FloatingOrbs } from '@/components/FloatingOrbs';
 import { ScrollHint } from '@/components/ScrollHint';
+
+const FloatingOrbs = dynamic(() => import('@/components/FloatingOrbs').then(m => ({ default: m.FloatingOrbs })), {
+  ssr: false,
+  loading: () => null,
+});
 
 export default function Home() {
   const stats = [
@@ -79,7 +83,7 @@ export default function Home() {
 
         <div className="max-w-7xl mx-auto relative z-10 w-full">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 1, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
             className="text-center"
@@ -104,24 +108,13 @@ export default function Home() {
             </motion.div>
 
             {/* Main Heading */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
-                <span className="text-white">AI-Powered </span>
-                <motion.span
-                  className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-orange-500 via-orange-400 to-yellow-500"
-                  initial={{ opacity: 0, filter: 'blur(10px)' }}
-                  animate={{ opacity: 1, filter: 'blur(0px)' }}
-                  transition={{ duration: 1, delay: 0.3 }}
-                >
-                  SaaS Solutions
-                </motion.span>
-                <span className="text-white"> untuk Bisnis Modern</span>
-              </h1>
-            </motion.div>
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
+              <span className="text-white">AI-Powered </span>
+              <span className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-orange-500 via-orange-400 to-yellow-500">
+                SaaS Solutions
+              </span>
+              <span className="text-white"> untuk Bisnis Modern</span>
+            </h1>
 
             {/* Subtitle */}
             <motion.p
@@ -140,18 +133,14 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.5 }}
               className="flex flex-col sm:flex-row gap-4 justify-center"
             >
-              <Link href="/products">
-                <AnimatedButton variant="primary" size="lg" className="px-6 py-3 min-w-max">
-                  <span className="flex items-center gap-2">
-                    Jelajahi Produk <ArrowRight className="w-5 h-5" aria-hidden="true"/>
-                  </span>
-                </AnimatedButton>
-              </Link>
-              <Link href="/services">
-                <AnimatedButton variant="outline" size="lg" className="min-w-max">
-                  Lihat Layanan Kami
-                </AnimatedButton>
-              </Link>
+              <AnimatedButton href="/products" variant="primary" size="lg" className="min-w-max">
+                <span className="flex items-center gap-2">
+                  Jelajahi Produk <ArrowRight className="w-5 h-5" aria-hidden="true"/>
+                </span>
+              </AnimatedButton>
+              <AnimatedButton href="/services" variant="outline" size="lg" className="min-w-max">
+                Lihat Layanan Kami
+              </AnimatedButton>
             </motion.div>
 
             {/* Stats Section */}
@@ -324,11 +313,9 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <Link href="/contact">
-                <AnimatedButton variant="primary" size="lg">
-                  Konsultasi Gratis Sekarang
-                </AnimatedButton>
-              </Link>
+              <AnimatedButton href="/contact" variant="primary" size="lg">
+                Konsultasi Gratis Sekarang
+              </AnimatedButton>
             </motion.div>
 
             <motion.p

@@ -79,11 +79,9 @@ export default function Navbar() {
 
             {/* Desktop CTA Button */}
             <div className="hidden md:block">
-              <Link href="/payment">
-                <AnimatedButton variant="primary" size="md">
-                  Mulai Sekarang
-                </AnimatedButton>
-              </Link>
+              <AnimatedButton href="/payment" variant="primary" size="md">
+                Mulai Sekarang
+              </AnimatedButton>
             </div>
 
             {/* Mobile Menu Button */}

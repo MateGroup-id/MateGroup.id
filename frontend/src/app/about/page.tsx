@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Target, Lightbulb, Heart, Award } from 'lucide-react';
 import { AnimatedButton } from '@/components/AnimatedButton';
@@ -166,11 +165,9 @@ export default function AboutPage() {
             <p className="text-gray-300 mb-8 text-lg">
               Siap transform bisnis Anda dengan solusi inovatif dan layanan profesional kami?
             </p>
-            <Link href="/contact">
-              <AnimatedButton variant="primary" size="lg">
-                Hubungi Kami
-              </AnimatedButton>
-            </Link>
+            <AnimatedButton href="/contact" variant="primary" size="lg">
+              Hubungi Kami
+            </AnimatedButton>
           </motion.div>
         </div>
       </section>

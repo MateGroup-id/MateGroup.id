@@ -2,21 +2,26 @@
 
 import { useRef } from 'react';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 interface AnimatedButtonProps {
   children: React.ReactNode;
   onClick?: () => void;
+  href?: string;
   variant?: 'primary' | 'secondary' | 'outline';
   size?: 'sm' | 'md' | 'lg';
   className?: string;
+  disabled?: boolean;
 }
 
 export function AnimatedButton({
   children,
   onClick,
+  href,
   variant = 'primary',
   size = 'md',
   className = '',
+  disabled = false,
 }: AnimatedButtonProps) {
   const buttonRef = useRef<HTMLButtonElement>(null);
 
@@ -27,28 +32,36 @@ export function AnimatedButton({
   };
 
   const sizeClasses = {
-    sm: 'px-4 py-2 text-sm',
-    md: 'px-6 py-3 text-base',
-    lg: 'px-8 py-4 text-lg',
+    sm: 'px-4 py-2 text-sm min-h-[44px] min-w-[44px]',
+    md: 'px-6 py-3 text-base min-h-[44px] min-w-[44px]',
+    lg: 'px-8 py-4 text-lg min-h-[44px] min-w-[44px]',
   };
 
-  const handleMouseEnter = () => {
-    // Animation handled by Framer Motion
+  const baseClass = `relative font-semibold rounded-lg transition-all duration-300 cursor-pointer inline-flex items-center justify-center ${variantClasses[variant]} ${sizeClasses[size]} ${className}`;
+
+  const motionProps = {
+    whileHover: disabled ? {} : { scale: 1.05 },
+    whileTap: disabled ? {} : { scale: 0.95 },
   };
 
-  const handleMouseLeave = () => {
-    // Animation handled by Framer Motion
-  };
+  if (href) {
+    return (
+      <motion.div {...motionProps} className="inline-block">
+        <Link href={href} className={baseClass}>
+          <span className="relative z-10">{children}</span>
+          <div className="absolute inset-0 rounded-lg bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+        </Link>
+      </motion.div>
+    );
+  }
 
   return (
     <motion.button
       ref={buttonRef}
       onClick={onClick}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-      className={`relative font-semibold rounded-lg transition-all duration-300 cursor-pointer ${variantClasses[variant]} ${sizeClasses[size]} ${className}`}
+      disabled={disabled}
+      {...motionProps}
+      className={baseClass}
     >
       <span className="relative z-10">{children}</span>
       <div className="absolute inset-0 rounded-lg bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity" />

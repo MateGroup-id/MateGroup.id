@@ -278,16 +278,12 @@ export default function ServicesPage() {
               Pilih layanan yang sesuai kebutuhan Anda dan lakukan pemesanan sekarang.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/payment">
-                <AnimatedButton variant="primary" size="lg">
-                  Pesan &amp; Bayar
-                </AnimatedButton>
-              </Link>
-              <Link href="/contact">
-                <AnimatedButton variant="secondary" size="lg">
-                  Jadwalkan Konsultasi
-                </AnimatedButton>
-              </Link>
+              <AnimatedButton href="/payment" variant="primary" size="lg">
+                Pesan &amp; Bayar
+              </AnimatedButton>
+              <AnimatedButton href="/contact" variant="secondary" size="lg">
+                Jadwalkan Konsultasi
+              </AnimatedButton>
             </div>
           </motion.div>
         </div>

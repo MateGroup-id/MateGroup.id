@@ -105,3 +105,25 @@ html[data-scroll-behavior="smooth"] {
   background: rgba(245, 130, 32, 0.3);
   color: #ffffff;
 }
+
+/* =============================================
+   Floating orb CSS animations (replaces framer-motion loops)
+   GPU-composited: only uses transform, no layout/paint.
+   ============================================= */
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-28px); }
+}
+@keyframes float-medium {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-22px); }
+}
+@keyframes float-fast {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-16px); }
+}
+
+.animate-float-slow   { animation: float-slow   5s ease-in-out infinite; }
+.animate-float-medium { animation: float-medium 4s ease-in-out infinite 0.8s; }
+.animate-float-fast   { animation: float-fast   3.5s ease-in-out infinite 1.6s; }
+.will-change-transform { will-change: transform; }
