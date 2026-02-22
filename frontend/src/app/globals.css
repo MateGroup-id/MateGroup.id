@@ -55,7 +55,7 @@ html[data-scroll-behavior="smooth"] {
 /* Navigation link styles */
 .nav-link {
   position: relative;
-  color: #a8adb8;
+  color: white;
   text-decoration: none;
   font-weight: 500;
   font-size: 0.875rem;

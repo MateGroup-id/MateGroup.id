@@ -18,18 +18,6 @@ import { motion } from 'framer-motion';
 import { FloatingOrbs } from '@/components/FloatingOrbs';
 
 /**
- * Daftar domain eksternal yang diizinkan untuk redirect setelah login.
- * Domain-domain ini adalah aplikasi yang terintegrasi dengan SSO MateGroup.
- * @constant {string[]}
- */
-const ALLOWED_EXTERNAL_DOMAINS = [
-  'localhost:5173', // CoMate local dev
-  'localhost:3001',
-  'comate.mategroup.id',
-  'app.mategroup.id',
-];
-
-/**
  * Memeriksa apakah URL merupakan redirect eksternal yang diizinkan.
  * @description Fungsi ini memvalidasi URL redirect untuk memastikan
  * bahwa hanya domain yang terdaftar dalam ALLOWED_EXTERNAL_DOMAINS
@@ -45,9 +33,24 @@ const ALLOWED_EXTERNAL_DOMAINS = [
 function isExternalRedirect(url: string): boolean {
   try {
     const urlObj = new URL(url);
-    return ALLOWED_EXTERNAL_DOMAINS.some(domain => 
-      urlObj.host === domain || urlObj.host.endsWith('.' + domain)
-    );
+    const { hostname, protocol } = urlObj;
+
+    // Only allow http or https
+    if (protocol !== 'http:' && protocol !== 'https:') {
+      return false;
+    }
+
+    // Allow ALL localhost ports
+    if (hostname === 'localhost' || hostname === '127.0.0.1') {
+      return true;
+    }
+
+    // Allow root domain and all subdomains
+    if (hostname === 'mategroup.id' || hostname.endsWith('.mategroup.id')) {
+      return true;
+    }
+
+    return false;
   } catch {
     return false;
   }
@@ -259,7 +262,9 @@ function LoginContent() {
               </Link>
             </div>
 
-            <SubmitButton loading={loading}>Masuk</SubmitButton>
+            <SubmitButton loading={loading} className='cursor-pointer'>
+              Masuk
+            </SubmitButton>
 
             <div className="text-center text-sm text-gray-400 mt-6">
               Belum punya akun?{' '}

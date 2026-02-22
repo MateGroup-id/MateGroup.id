@@ -17,6 +17,8 @@ import {
   SiGooglecloud,
   SiFlask,
   SiAmazon,
+  SiGooglegemini,
+  SiOllama,
 } from 'react-icons/si';
 import { FaMicrosoft } from 'react-icons/fa';
 
@@ -35,8 +37,8 @@ const techIconMap: { [key: string]: any } = {
   'Flask': SiFlask,
   'AWS': SiAmazon,
   'Microsoft Azure': FaMicrosoft,
-  'Generative AI': SiTensorflow,
-  'Llama AI': SiPython,
+  'Generative AI': SiGooglegemini,
+  'Llama AI': SiOllama,
   'Time Series Analysis': SiTensorflow,
 };
 
@@ -56,12 +58,28 @@ interface SaaSProduct {
 
 const products: SaaSProduct[] = [
   {
+    id: 'comate',
+    title: 'CoMate',
+    shortDesc: 'Platform collaborative AI',
+    fullDesc: 'Platform kolaboratif inovatif yang memanfaatkan teknologi Llama AI dari Meta untuk pengalaman kolaborasi yang mutakhir dan futuristik.',
+    category: 'AI',
+    status: 'Beta',
+    award: '🚀 Top 50 (Rank 22) Meta Llama Project Incubator',
+    technologies: ['Python', 'Llama AI', 'React', 'Node.js', 'Google Cloud'],
+    highlights: [
+      'Integrasi Llama AI',
+      'Workspace collaborative',
+      'Partnership Meta',
+      'Fitur AI advanced'
+    ],
+  },
+  {
     id: 'coursemate',
     title: 'CourseMate',
     shortDesc: 'Rekomendasi kursus berbasis AI',
-    fullDesc: 'Platform pembelajaran intelligent yang menggunakan machine learning untuk analisis preferensi user dan kasih rekomendasi konten edukatif yang personalized.',
+    fullDesc: 'Platform pembelajaran cerdas yang menggunakan machine learning untuk menganalisis preferensi pengguna dan memberikan rekomendasi konten edukatif yang dipersonalisasi.',
     category: 'Education',
-    status: 'Live',
+    status: 'Coming Soon',
     award: '🏆 Top 5 Bangkit Academy 2024 Capstone',
     technologies: ['Python', 'TensorFlow', 'Flask', 'Google Cloud'],
     highlights: [
@@ -75,9 +93,9 @@ const products: SaaSProduct[] = [
     id: 'mentalmate-v1',
     title: 'MentalMate v1',
     shortDesc: 'Asisten kesehatan mental berbasis AI',
-    fullDesc: 'Platform kesehatan mental yang powered by generative AI, tawarkan emotional support, mood tracking, dan wellness recommendations canggih.',
+    fullDesc: 'Platform kesehatan mental yang didukung oleh kecerdasan buatan generatif, menawarkan dukungan emosional, pelacakan suasana hati, dan rekomendasi kesehatan yang canggih.',
     category: 'Wellness',
-    status: 'Live',
+    status: 'Coming Soon',
     award: '🥇 Microsoft Online Hackathon 2025 Winner',
     technologies: ['Python', 'Generative AI', 'Flask', 'Microsoft Azure'],
     highlights: [
@@ -91,9 +109,9 @@ const products: SaaSProduct[] = [
     id: 'mentymate',
     title: 'MentyMate (v2)',
     shortDesc: 'Platform wellness mental yang enhanced',
-    fullDesc: 'Platform kesehatan mental upgrade dengan interactive features, progress tracking, community support, dan integrasi professional resources yang lengkap.',
+    fullDesc: 'Platform kesehatan mental yang ditingkatkan dengan fitur interaktif, pelacakan progres, dukungan komunitas, dan integrasi sumber daya profesional yang lengkap.',
     category: 'Wellness',
-    status: 'Live',
+    status: 'Coming Soon',
     award: '🏅 Top 30 Yayasan Peduli BUMN Hackathon',
     technologies: ['React', 'TypeScript', 'Python', 'Google Cloud'],
     highlights: [
@@ -107,9 +125,9 @@ const products: SaaSProduct[] = [
     id: 'energymate',
     title: 'EnergyMate',
     shortDesc: 'Sistem manajemen energi yang smart',
-    fullDesc: 'Platform monitoring energi intelligent yang predict consumption patterns dan kasih optimization recommendations untuk hemat biaya operasional.',
+    fullDesc: 'Platform pemantauan energi cerdas yang memprediksi pola konsumsi dan memberikan rekomendasi optimalisasi untuk menghemat biaya operasional.',
     category: 'Energy',
-    status: 'Live',
+    status: 'Coming Soon',
     award: '⭐ Scored 94/100 Laskar AI 2025',
     technologies: ['Python', 'TensorFlow', 'Time Series Analysis', 'Flask'],
     highlights: [
@@ -123,9 +141,9 @@ const products: SaaSProduct[] = [
     id: 'edumate',
     title: 'EduMate',
     shortDesc: 'Platform learning interactive dan monitoring',
-    fullDesc: 'Platform edukasi comprehensive yang combine interactive learning experiences dengan intelligent student monitoring dan adaptive learning paths yang personalized.',
+    fullDesc: 'Platform edukasi komprehensif yang menggabungkan pengalaman belajar interaktif dengan pemantauan siswa secara cerdas dan jalur pembelajaran adaptif yang dipersonalisasi.',
     category: 'Education',
-    status: 'Live',
+    status: 'Coming Soon',
     award: '🏆 IDCamp Developer Challenge #2 Winner',
     technologies: ['Next.js', 'React', 'Express', 'MongoDB', 'Google Cloud'],
     highlights: [
@@ -139,9 +157,9 @@ const products: SaaSProduct[] = [
     id: 'checkmate',
     title: 'CheckMate',
     shortDesc: 'Platform product insights berbasis AI',
-    fullDesc: 'Platform AI-powered untuk comprehensive product analysis, quality assessment, dan compliance checking dengan detailed analytics dan insights mendalam.',
+    fullDesc: 'Platform berbasis AI untuk analisis produk yang komprehensif, penilaian kualitas, dan pengecekan kepatuhan dengan analitik terperinci serta wawasan mendalam.',
     category: 'AI',
-    status: 'Live',
+    status: 'Coming Soon',
     award: '🎯 Top 20 Hackinfest Sucofindo 2025',
     technologies: ['Python', 'Generative AI', 'TensorFlow', 'Google Cloud'],
     highlights: [
@@ -155,9 +173,9 @@ const products: SaaSProduct[] = [
     id: 'xportmate',
     title: 'XportMate',
     shortDesc: 'Platform digital export',
-    fullDesc: 'Platform yang support digital export initiatives dengan market analysis tools, trade documentation support, dan secure payment integration yang aman.',
+    fullDesc: 'Platform yang mendukung inisiatif ekspor digital dengan alat analisis pasar, dukungan dokumentasi perdagangan, dan integrasi pembayaran yang aman.',
     category: 'Marketplace',
-    status: 'Beta',
+    status: 'Coming Soon',
     technologies: ['React', 'Node.js', 'Express', 'MongoDB', 'AWS'],
     highlights: [
       'Fasilitasi export',
@@ -170,9 +188,9 @@ const products: SaaSProduct[] = [
     id: 'ekrafmate',
     title: 'EkrafMate',
     shortDesc: 'Platform creative talent',
-    fullDesc: 'Platform innovative yang connect creative talents dengan business opportunities, featuring portfolio showcasing dan collaboration tools yang powerful.',
+    fullDesc: 'Platform inovatif yang menghubungkan talenta kreatif dengan peluang bisnis, dilengkapi fitur penampilan portofolio dan alat kolaborasi yang andal.',
     category: 'Creative',
-    status: 'Beta',
+    status: 'Coming Soon',
     technologies: ['React', 'TypeScript', 'Node.js', 'PostgreSQL', 'AWS'],
     highlights: [
       'Algoritma talent matching',
@@ -181,26 +199,9 @@ const products: SaaSProduct[] = [
       'Rekomendasi berbasis skill'
     ],
   },
-  {
-    id: 'comate',
-    title: 'CoMate',
-    shortDesc: 'Platform collaborative AI',
-    fullDesc: 'Platform collaborative innovative yang leverage Meta\'s Llama AI technology untuk cutting-edge collaborative experiences yang futuristik.',
-    category: 'AI',
-    status: 'Coming Soon',
-    award: '🚀 Top 50 (Rank 22) Meta Llama Project Incubator',
-    technologies: ['Python', 'Llama AI', 'React', 'Node.js', 'Google Cloud'],
-    highlights: [
-      'Integrasi Llama AI',
-      'Workspace collaborative',
-      'Partnership Meta',
-      'Fitur AI advanced'
-    ],
-  },
 ];
 
 export default function ProductsPage() {
-  const scrollHintImported = true; // Just to use ScrollHint
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [expandedProduct, setExpandedProduct] = useState<string | null>(null);
 
@@ -273,23 +274,27 @@ export default function ProductsPage() {
                   transition={{ duration: 0.3 }}
                   className="rounded-xl bg-gradient-to-br from-gray-900 to-black border border-white/10 hover:border-orange-500/60 overflow-hidden group transition-all duration-300 hover:shadow-2xl hover:shadow-orange-500/30 flex flex-col hover:scale-105 hover:-translate-y-1"
                 >
-                  {/* Status Badge */}
-                  <div className="p-3 sm:p-4 border-b border-white/10 flex justify-between items-start gap-2">
-                    <div className="flex-1 min-w-0">
-                      <h3 className="inline-flex w-fit text-lg sm:text-xl font-bold text-orange-400 px-0 py-0 group-hover:px-3 group-hover:py-1 border border-transparent rounded-full group-hover:border-orange-400 group-hover:bg-orange-400/10  transition-all duration-300 ease-out">
+                  {/* Header */}
+                  <div className="p-3 sm:p-4 border-b border-white/10">
+                    <div className="flex justify-between items-start gap-2">
+                      <h3 className="text-lg sm:text-xl font-bold text-orange-400 px-0 py-0 group-hover:px-3 group-hover:py-1 border border-transparent rounded-full group-hover:border-orange-400 group-hover:bg-orange-400/10 transition-all duration-300 ease-out">
                         {product.title}
                       </h3>
-                      <p className="text-xs sm:text-sm text-gray-400 mt-1 line-clamp-2">{product.shortDesc}</p>
+
+                      <span className={`px-2 sm:px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap flex-shrink-0 transition-all duration-300 ${
+                        product.status === 'Live'
+                          ? 'bg-green-500/20 text-green-400 group-hover:bg-green-500/40 group-hover:shadow-lg group-hover:shadow-green-500/20'
+                          : product.status === 'Beta'
+                          ? 'bg-cyan-500/20 text-cyan-400 group-hover:bg-cyan-500/40 group-hover:shadow-lg group-hover:shadow-cyan-500/20'
+                          : 'bg-yellow-500/20 text-yellow-400 group-hover:bg-yellow-500/40 group-hover:shadow-lg group-hover:shadow-yellow-500/20'
+                      }`}>
+                        {product.status}
+                      </span>
                     </div>
-                    <span className={`px-2 sm:px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap flex-shrink-0 transition-all duration-300 ${
-                      product.status === 'Live'
-                        ? 'bg-green-500/20 text-green-400 group-hover:bg-green-500/40 group-hover:shadow-lg group-hover:shadow-green-500/20'
-                        : product.status === 'Beta'
-                        ? 'bg-cyan-500/20 text-cyan-400 group-hover:bg-cyan-500/40 group-hover:shadow-lg group-hover:shadow-cyan-500/20'
-                        : 'bg-yellow-500/20 text-yellow-400 group-hover:bg-yellow-500/40 group-hover:shadow-lg group-hover:shadow-yellow-500/20'
-                    }`}>
-                      {product.status}
-                    </span>
+
+                    <p className="text-xs sm:text-sm text-gray-400 mt-2 break-words">
+                      {product.shortDesc}
+                    </p>
                   </div>
 
                   {/* Content */}
@@ -312,7 +317,7 @@ export default function ProductsPage() {
                             <motion.div
                               key={idx}
                               whileHover={{ scale: 1.15, rotate: 5 }}
-                              className="flex items-center gap-1 px-2 py-1 rounded-lg bg-orange-500/10 border border-orange-500/30 group-hover:bg-orange-500/20 group-hover:border-orange-500/50 transition-all duration-300 cursor-help"
+                              className="flex items-center gap-1 px-2 py-1 rounded-lg bg-orange-500/10 border border-orange-500/30 group-hover:bg-orange-500/20 group-hover:border-orange-500/50 transition-all duration-300 cursor-pointer"
                               title={tech}
                             >
                               {IconComponent && (
@@ -374,20 +379,39 @@ export default function ProductsPage() {
 
                   {/* CTA */}
                   <div className="p-3 sm:p-4 border-t border-white/10 pt-3">
-                    <motion.button
-                      whileHover={{ scale: 1.05, y: -2 }}
-                      whileTap={{ scale: 0.98 }}
-                      className="w-full px-4 py-2 rounded-lg bg-gradient-to-r from-orange-500/20 to-orange-600/20 hover:from-orange-500/40 hover:to-orange-600/40 text-orange-400 font-semibold text-sm transition-all duration-300 flex items-center justify-center gap-2 border border-orange-500/30 hover:border-orange-500/60 group/cta shadow-lg shadow-orange-500/0 hover:shadow-orange-500/20"
-                    >
-                      Pelajari Lebih Lanjut
-                      <motion.div
-                        animate={{ x: 3 }}
-                        transition={{ repeat: Infinity, repeatType: 'reverse', duration: 1.5 }}
-                        className="group-hover/cta:translate-x-1 transition-transform"
+                    {product.status === 'Coming Soon' ? (
+                      <button
+                        disabled
+                        className="w-full px-4 py-2 rounded-lg bg-gray-800 text-gray-400 font-semibold text-sm transition-all duration-300 flex items-center justify-center gap-2 border border-gray-700 cursor-not-allowed"
                       >
-                        <ExternalLink size={16} />
-                      </motion.div>
-                    </motion.button>
+                        Coming Soon
+                      </button>
+                    ) : (
+                      <a
+                        href={product.status === 'Live' ? product.link || '#' : '/contact'}
+                        target={product.status === 'Live' ? '_blank' : undefined}
+                        rel={product.status === 'Live' ? 'noopener noreferrer' : undefined}
+                      >
+                        <motion.button
+                          whileHover={{ scale: 1.05, y: -2 }}
+                          whileTap={{ scale: 0.98 }}
+                          className={`w-full px-4 py-2 rounded-lg ${
+                            product.status === 'Live'
+                              ? 'bg-gradient-to-r from-orange-500/20 to-orange-600/20 hover:from-orange-500/40 hover:to-orange-600/40 text-orange-400 border border-orange-500/30 cursor-pointer'
+                              : 'bg-blue-600/20 hover:bg-blue-600/40 text-blue-400 border border-blue-500/30 cursor-pointer'
+                          } font-semibold text-sm transition-all duration-300 flex items-center justify-center gap-2`}
+                        >
+                          {product.status === 'Live' ? 'Learn More' : 'Request Early Access'}
+                          <motion.div
+                            animate={{ x: 3 }}
+                            transition={{ repeat: Infinity, repeatType: 'reverse', duration: 1.5 }}
+                            className="transition-transform"
+                          >
+                            <ExternalLink size={16} />
+                          </motion.div>
+                        </motion.button>
+                      </a>
+                    )}
                   </div>
                 </motion.div>
               ))}

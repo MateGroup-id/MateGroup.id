@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Linkedin, Mail, ArrowRight } from 'lucide-react';
-import { SiFacebook, SiInstagram } from 'react-icons/si';
+import { SiFacebook, SiInstagram, SiThreads } from 'react-icons/si';
 import { motion } from 'framer-motion';
 
 const year = new Date().getFullYear();
@@ -30,10 +30,10 @@ export default function Footer() {
   };
 
   const socialLinks = [
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
-    { icon: SiInstagram, href: '#', label: 'Instagram' },
-    { icon: SiFacebook, href: '#', label: 'Facebook' },
-    { icon: Mail, href: 'mailto:support@mategroup.id', label: 'Email' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/company/mategroup-id', label: 'LinkedIn' },
+    { icon: SiInstagram, href: 'https://www.instagram.com/mategroup.id', label: 'Instagram' },
+    { icon: SiFacebook, href: 'https://facebook.com/people/MateGroupid/61587349823694', label: 'Facebook' },
+    { icon: SiThreads, href: 'https://www.threads.com/@mategroup.id', label: 'Threads' },
   ];
 
   // Detect scroll position to show/hide button
@@ -108,6 +108,8 @@ export default function Footer() {
                     key={idx}
                     href={social.href}
                     title={social.label}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     whileHover={{ scale: 1.2, rotate: 5 }}
                     viewport={{ once: true }}
                     whileTap={{ scale: 0.9 }}

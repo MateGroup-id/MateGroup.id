@@ -247,7 +247,7 @@ export default function PaymentPage() {
                     className="w-full py-3 px-6 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 bg-gray-700/50 text-gray-400 border border-gray-600/50 cursor-not-allowed"
                   >
                     <Clock className="w-4 h-4" />
-                    Coming Soon — Pembayaran Segera Hadir
+                    Coming Soon
                   </button>
 
                   <p className="text-xs text-gray-500 text-center leading-relaxed">

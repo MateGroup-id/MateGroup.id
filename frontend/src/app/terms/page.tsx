@@ -266,12 +266,13 @@ export default function TermsPage() {
                   </a>
                 </p>
               </div>
-              <div className="flex gap-4 justify-center mt-4">
-                <Link href="/privacy" className="text-orange-400 hover:text-orange-300 transition-colors text-sm underline">
-                  Kebijakan Privasi
-                </Link>
-                <Link href="/payment" className="text-orange-400 hover:text-orange-300 transition-colors text-sm underline">
-                  Halaman Pembayaran
+              <div className="flex items-center gap-2 justify-center mt-4 text-sm">
+                <p>Lihat juga:</p>
+                <Link
+                    href="/privacy"
+                    className="text-orange-400 hover:text-orange-300 transition-colors underline"
+                >
+                    Kebijakan Privasi
                 </Link>
               </div>
             </div>

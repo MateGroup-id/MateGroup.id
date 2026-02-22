@@ -13,6 +13,8 @@
 import { useState, FormEvent, ChangeEvent, useEffect, Suspense } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { usePathname } from 'next/navigation';
+import Script from 'next/dist/client/script';
 import { FormInput, FormAlert, SubmitButton } from '@/components/AuthComponents';
 import { motion } from 'framer-motion';
 import { FloatingOrbs } from '@/components/FloatingOrbs';
@@ -64,19 +66,6 @@ declare global {
 }
 
 /**
- * Daftar domain eksternal yang diizinkan untuk redirect setelah registrasi.
- * @description Domain-domain ini adalah aplikasi yang terintegrasi
- * dengan SSO MateGroup dan dapat menerima redirect setelah pendaftaran.
- * @constant {string[]}
- */
-const ALLOWED_EXTERNAL_DOMAINS = [
-  'localhost:5173',
-  'localhost:3001',
-  'comate.mategroup.id',
-  'app.mategroup.id',
-];
-
-/**
  * Memeriksa apakah URL merupakan redirect eksternal yang diizinkan.
  * @description Fungsi ini memvalidasi URL redirect untuk memastikan
  * bahwa hanya domain yang terdaftar dalam ALLOWED_EXTERNAL_DOMAINS
@@ -92,9 +81,24 @@ const ALLOWED_EXTERNAL_DOMAINS = [
 function isExternalRedirect(url: string): boolean {
   try {
     const urlObj = new URL(url);
-    return ALLOWED_EXTERNAL_DOMAINS.some(domain => 
-      urlObj.host === domain || urlObj.host.endsWith('.' + domain)
-    );
+    const { hostname, protocol } = urlObj;
+
+    // Only allow http or https
+    if (protocol !== 'http:' && protocol !== 'https:') {
+      return false;
+    }
+
+    // Allow ALL localhost ports
+    if (hostname === 'localhost' || hostname === '127.0.0.1') {
+      return true;
+    }
+
+    // Allow root domain and all subdomains
+    if (hostname === 'mategroup.id' || hostname.endsWith('.mategroup.id')) {
+      return true;
+    }
+
+    return false;
   } catch {
     return false;
   }
@@ -124,6 +128,7 @@ function RegisterContent() {
     terms: false,
   });
 
+  const pathname = usePathname();
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [alert, setAlert] = useState<{ type: 'error' | 'success'; message: string } | null>(null);
   const [loading, setLoading] = useState(false);
@@ -168,34 +173,34 @@ function RegisterContent() {
    */
   useEffect(() => {
     let widgetId: string | null = null;
-    
-    const script = document.createElement('script');
-    script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
-    script.async = true;
-    script.defer = true;
-    script.onload = () => {
-      if (window.turnstile) {
-        const container = document.getElementById('turnstile-widget');
-        if (container && container.childElementCount === 0) {
-          widgetId = window.turnstile.render('#turnstile-widget', {
-            sitekey: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || '',
-            theme: 'dark',
-          });
-        }
-      }
-    };
-    document.head.appendChild(script);
+    let interval: NodeJS.Timeout;
 
-    // Cleanup function: hapus widget dan script saat unmount
+    const renderTurnstile = () => {
+      if (!window.turnstile) return;
+
+      const container = document.getElementById('turnstile-widget');
+      if (!container) return;
+
+      container.innerHTML = '';
+
+      widgetId = window.turnstile.render(container, {
+        sitekey: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!,
+        theme: 'dark',
+      });
+
+      clearInterval(interval);
+    };
+
+    // Poll until turnstile ready
+    interval = setInterval(renderTurnstile, 100);
+
     return () => {
-      if (widgetId && window.turnstile) {
+      clearInterval(interval);
+      if (window.turnstile && widgetId) {
         window.turnstile.remove(widgetId);
       }
-      if (document.head.contains(script)) {
-        document.head.removeChild(script);
-      }
     };
-  }, []);
+  }, [pathname]);
 
   /**
    * Menangani perubahan input pada formulir.
@@ -341,139 +346,146 @@ function RegisterContent() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-black via-gray-900 to-black flex items-center justify-center p-4 pt-24 relative overflow-hidden">
-      <FloatingOrbs />
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="w-full max-w-md relative z-10 my-8"
-      >
-        <div className="bg-gradient-to-br from-gray-900 to-black backdrop-blur-xl border border-white/10 rounded-2xl p-8 shadow-2xl">
-          <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold mb-2">
-              <span className="bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">
-                Mate
-              </span>
-              <span className="text-white">
-                Group
-              </span>
-            </h1>
-            <p className="text-gray-400">Buat akun baru Anda</p>
-          </div>
+    <>
+      <Script
+        src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
+        strategy="afterInteractive"
+      />
 
-          {alert && <FormAlert type={alert.type} message={alert.message} />}
+      <div className="min-h-screen bg-gradient-to-b from-black via-gray-900 to-black flex items-center justify-center p-4 pt-24 relative overflow-hidden">
+        <FloatingOrbs />
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="w-full max-w-md relative z-10 my-8"
+        >
+          <div className="bg-gradient-to-br from-gray-900 to-black backdrop-blur-xl border border-white/10 rounded-2xl p-8 shadow-2xl">
+            <div className="text-center mb-8">
+              <h1 className="text-3xl font-bold mb-2">
+                <span className="bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">
+                  Mate
+                </span>
+                <span className="text-white">
+                  Group
+                </span>
+              </h1>
+              <p className="text-gray-400">Buat akun baru Anda</p>
+            </div>
 
-          <form onSubmit={handleSubmit} className="space-y-5">
-            <FormInput
-              label="Nama Lengkap"
-              id="fullName"
-              placeholder="Nama Lengkap"
-              value={formData.fullName}
-              onChange={handleChange}
-              error={errors.fullName}
-              required
-            />
+            {alert && <FormAlert type={alert.type} message={alert.message} />}
 
-            <FormInput
-              label="Email"
-              id="email"
-              type="email"
-              placeholder="example@email.com"
-              value={formData.email}
-              onChange={handleChange}
-              error={errors.email}
-              required
-            />
-
-            <div>
+            <form onSubmit={handleSubmit} className="space-y-5">
               <FormInput
-                label="Password"
-                id="password"
-                type="password"
-                placeholder="••••••••"
-                value={formData.password}
+                label="Nama Lengkap"
+                id="fullName"
+                placeholder="Nama Lengkap"
+                value={formData.fullName}
                 onChange={handleChange}
-                error={errors.password}
+                error={errors.fullName}
                 required
               />
-              <div className="mt-3 space-y-2">
-                {passwordRequirements.map((req: Requirement, idx: number) => (
-                  <div
-                    key={idx}
-                    className={`text-xs flex items-center gap-2 ${
-                      req.met ? 'text-green-400' : 'text-gray-400'
-                    }`}
-                  >
-                    <span className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${
-                      req.met 
-                        ? 'border-green-500 bg-green-500/20' 
-                        : 'border-gray-500'
-                    }`}>
-                      {req.met && <span className="text-green-400 font-bold text-xs">✓</span>}
-                    </span>
-                    {req.label}
-                  </div>
-                ))}
-              </div>
-            </div>
 
-            <FormInput
-              label="Konfirmasi Password"
-              id="confirmPassword"
-              type="password"
-              placeholder="••••••••"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-              error={errors.confirmPassword}
-              required
-            />
-
-            {/* Turnstile Widget */}
-            <div className="mt-5 flex justify-center">
-              <div
-                id="turnstile-widget"
-                className="origin-top scale-80 sm:scale-100"
-              ></div>
-            </div>
-
-            <label className="flex items-start gap-3 text-xs text-gray-400">
-              <input
-                type="checkbox"
-                name="terms"
-                checked={formData.terms}
+              <FormInput
+                label="Email"
+                id="email"
+                type="email"
+                placeholder="example@email.com"
+                value={formData.email}
                 onChange={handleChange}
-                className="w-5 h-5 mt-0.5 rounded bg-gray-800 border border-white/20 cursor-pointer accent-orange-500"
+                error={errors.email}
+                required
               />
-              <span>
-                Saya setuju dengan{' '}
-                <Link href="/terms" className="text-orange-400 hover:text-orange-300 font-semibold">
-                  Syarat dan Ketentuan
-                </Link>{' '}
-                dan{' '}
-                <Link href="/privacy" className="text-orange-400 hover:text-orange-300 font-semibold">
-                  Kebijakan Privasi
+
+              <div>
+                <FormInput
+                  label="Password"
+                  id="password"
+                  type="password"
+                  placeholder="••••••••"
+                  value={formData.password}
+                  onChange={handleChange}
+                  error={errors.password}
+                  required
+                />
+                <div className="mt-3 space-y-2">
+                  {passwordRequirements.map((req: Requirement, idx: number) => (
+                    <div
+                      key={idx}
+                      className={`text-xs flex items-center gap-2 ${
+                        req.met ? 'text-green-400' : 'text-gray-400'
+                      }`}
+                    >
+                      <span className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${
+                        req.met 
+                          ? 'border-green-500 bg-green-500/20' 
+                          : 'border-gray-500'
+                      }`}>
+                        {req.met && <span className="text-green-400 font-bold text-xs">✓</span>}
+                      </span>
+                      {req.label}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <FormInput
+                label="Konfirmasi Password"
+                id="confirmPassword"
+                type="password"
+                placeholder="••••••••"
+                value={formData.confirmPassword}
+                onChange={handleChange}
+                error={errors.confirmPassword}
+                required
+              />
+
+              {/* Turnstile Widget */}
+              <div className="mt-5 flex justify-center">
+                <div
+                  id="turnstile-widget"
+                  className="origin-top scale-80 sm:scale-100"
+                ></div>
+              </div>
+
+              <label className="flex items-center gap-3 text-xs text-gray-400 leading-relaxed">
+                <input
+                  type="checkbox"
+                  name="terms"
+                  checked={formData.terms}
+                  onChange={handleChange}
+                  className="w-5 h-5 rounded bg-gray-800 border border-white/20 cursor-pointer accent-orange-500 shrink-0"
+                />
+                <span>
+                  Saya setuju dengan{' '}
+                  <Link href="/terms" className="text-orange-400 hover:text-orange-300 font-semibold">
+                    Syarat dan Ketentuan
+                  </Link>{' '}
+                  dan{' '}
+                  <Link href="/privacy" className="text-orange-400 hover:text-orange-300 font-semibold">
+                    Kebijakan Privasi
+                  </Link>
+                </span>
+              </label>
+              {errors.terms && <p className="text-red-400 text-xs">{errors.terms}</p>}
+
+              <div className="mt-6">
+                <SubmitButton loading={loading} className='cursor-pointer'>
+                  Daftar
+                </SubmitButton>
+              </div>
+
+              <div className="text-center text-sm text-gray-400 mt-6">
+                Sudah punya akun?{' '}
+                <Link href={`/auth/login${redirectUrl !== '/dashboard' ? `?redirect=${encodeURIComponent(redirectUrl)}` : ''}`} className="text-orange-400 hover:text-orange-300 font-semibold">
+                  Masuk di sini
                 </Link>
-              </span>
-            </label>
-            {errors.terms && <p className="text-red-400 text-xs">{errors.terms}</p>}
-
-            <div className="mt-6">
-              <SubmitButton loading={loading}>
-                Daftar
-              </SubmitButton>
-            </div>
-
-            <div className="text-center text-sm text-gray-400 mt-6">
-              Sudah punya akun?{' '}
-              <Link href={`/auth/login${redirectUrl !== '/dashboard' ? `?redirect=${encodeURIComponent(redirectUrl)}` : ''}`} className="text-orange-400 hover:text-orange-300 font-semibold">
-                Masuk di sini
-              </Link>
-            </div>
-          </form>
-        </div>
-      </motion.div>
-    </div>
+              </div>
+            </form>
+          </div>
+        </motion.div>
+      </div>
+    </>
   );
 }
 

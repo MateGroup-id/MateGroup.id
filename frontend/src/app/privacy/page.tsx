@@ -207,12 +207,13 @@ export default function PrivacyPage() {
                   </a>
                 </p>
               </div>
-              <div className="flex gap-4 justify-center mt-4">
-                <Link href="/terms" className="text-orange-400 hover:text-orange-300 transition-colors text-sm underline">
-                  Syarat &amp; Ketentuan
-                </Link>
-                <Link href="/payment" className="text-orange-400 hover:text-orange-300 transition-colors text-sm underline">
-                  Halaman Pembayaran
+              <div className="flex items-center gap-2 justify-center mt-4 text-sm">
+                <p>Lihat juga:</p>
+                <Link
+                    href="/terms"
+                    className="text-orange-400 hover:text-orange-300 transition-colors underline"
+                >
+                    Syarat &amp; Ketentuan
                 </Link>
               </div>
             </div>

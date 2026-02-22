@@ -22,7 +22,7 @@ const services: Service[] = [
     id: 'web-dev',
     title: 'Pengembangan Web',
     description: 'Aplikasi web sesuai kebutuhan bisnis Anda',
-    longDescription: 'Kami membangun aplikasi web modern dan scalable dengan teknologi terkini. Dari desain responsive hingga sistem backend kompleks, kami deliver solusi yang drive results dan maximize performance.',
+    longDescription: 'Kami membangun aplikasi web modern dan scalable dengan teknologi terkini. Mulai dari desain responsive hingga sistem backend yang kompleks, kami menghadirkan solusi yang mendorong pertumbuhan dan memaksimalkan performa bisnis Anda.',
     icon: Code,
     features: [
       'Aplikasi Next.js & React',
@@ -38,8 +38,8 @@ const services: Service[] = [
   {
     id: 'mobile-dev',
     title: 'Aplikasi Mobile',
-    description: 'Solusi mobile native dan cross-platform',
-    longDescription: 'Buat pengalaman mobile yang engaging dengan expertise kami di native iOS/Android dan cross-platform development. Fokus pada UX yang excellent dan performance yang optimal.',
+    description: 'Solusi aplikasi mobile native dan cross-platform',
+    longDescription: 'Kami menghadirkan pengalaman mobile yang menarik berkat keahlian kami dalam pengembangan native iOS/Android dan cross-platform. Kami berfokus pada user experience yang luar biasa serta performa yang optimal.',
     icon: Smartphone,
     features: [
       'Pengembangan iOS',
@@ -55,8 +55,8 @@ const services: Service[] = [
   {
     id: 'ai-ml',
     title: 'AI & Machine Learning',
-    description: 'Solusi intelligent dengan AI dan ML',
-    longDescription: 'Leverage teknologi AI dan ML terdepan untuk automasi proses, generate insights dari data, dan buat sistem intelligent yang powerful dan scalable.',
+    description: 'Solusi cerdas berbasis AI dan machine learning',
+    longDescription: 'Manfaatkan teknologi AI dan machine learning terdepan untuk mengotomatiskan proses, menggali wawasan dari data, serta membangun sistem cerdas yang andal dan scalable sesuai kebutuhan bisnis Anda.',
     icon: Brain,
     features: [
       'Pengembangan ML model',
@@ -72,8 +72,8 @@ const services: Service[] = [
   {
     id: 'saas-dev',
     title: 'Pengembangan SaaS',
-    description: 'Build dan launch produk SaaS Anda',
-    longDescription: 'Dari concept hingga market, kami bantu Anda build, launch, dan scale produk SaaS Anda dengan modern architecture dan best practices terbukti.',
+    description: 'Bangun dan luncurkan produk SaaS Anda bersama kami',
+    longDescription: 'Dari konsep hingga pasar, kami membantu Anda membangun, meluncurkan, dan mengembangkan skala produk SaaS dengan arsitektur modern serta best practice yang telah terbukti menghasilkan produk berkualitas tinggi.',
     icon: Zap,
     features: [
       'Arsitektur SaaS',
@@ -89,8 +89,8 @@ const services: Service[] = [
   {
     id: 'consulting',
     title: 'Konsultasi Digital',
-    description: 'Guidance strategis untuk transformasi digital',
-    longDescription: 'Kami membantu bisnis navigate digital transformation journey dengan expert advice tentang technology strategy, architecture design, dan implementation roadmap yang strategic.',
+    description: 'Panduan strategis untuk transformasi digital bisnis Anda',
+    longDescription: 'Kami membantu bisnis dalam menjalani perjalanan transformasi digital dengan saran ahli mengenai technology strategy, architecture design, dan implementation roadmap yang terstruktur dan strategis.',
     icon: TrendingUp,
     features: [
       'Penilaian teknologi',
@@ -106,8 +106,8 @@ const services: Service[] = [
   {
     id: 'team-augmentation',
     title: 'Augmentasi Tim',
-    description: 'Perluas tim dengan expert developers',
-    longDescription: 'Get access ke skilled developers yang seamlessly integrate dengan tim Anda. Perfect untuk scale development capacity dengan cepat dan efisien.',
+    description: 'Perluas kapasitas tim Anda dengan developer berpengalaman',
+    longDescription: 'Dapatkan akses ke developer terampil yang terintegrasi secara mulus dengan tim Anda. Solusi tepat untuk memperluas kapasitas pengembangan secara cepat, efisien, dan sesuai dengan kebutuhan proyek.',
     icon: Users,
     features: [
       'Developer dedicated',
@@ -152,14 +152,14 @@ export default function ServicesPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: idx * 0.1 }}
                   viewport={{ once: true }}
-                  className="rounded-xl bg-gradient-to-br from-gray-900 to-black border border-white/10 hover:border-orange-500/30 p-8 group transition-all duration-300 hover:shadow-xl hover:shadow-orange-500/20 flex flex-col"
+                  className="rounded-xl bg-gradient-to-br from-gray-900 to-black border border-white/10 hover:border-orange-500/30 hover:scale-105 p-8 group transition-all duration-300 hover:shadow-xl hover:shadow-orange-500/20 flex flex-col"
                 >
                   <div>
                     <div className="w-12 h-12 rounded-lg bg-orange-500/20 flex items-center justify-center mb-4 group-hover:bg-orange-500/30 transition-all">
                       <Icon className="w-6 h-6 text-orange-400" />
                     </div>
                     
-                    <h3 className="text-xl font-bold text-orange-400 mb-2 group-hover:text-orange-300 transition-colors">
+                    <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-orange-400 transition-all">
                       {service.title}
                     </h3>
                     <p className="text-gray-400 text-sm mb-6">

@@ -37,7 +37,7 @@ export default function Navbar() {
       animate={{ y: 0 }}
       transition={{ duration: 0.6 }}
     >
-      <div className="glass-effect">
+      <div className="bg-white/5 backdrop-blur-lg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
@@ -63,7 +63,7 @@ export default function Navbar() {
             </motion.div>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex gap-1">
+            <div className="hidden md:flex gap-4">
               {navItems.map((item) => (
                 <Link
                   key={item.href}
@@ -79,7 +79,7 @@ export default function Navbar() {
 
             {/* Desktop CTA Button */}
             <div className="hidden md:block">
-              <Link href="/auth/login">
+              <Link href="/payment">
                 <AnimatedButton variant="primary" size="md">
                   Mulai Sekarang
                 </AnimatedButton>
@@ -118,14 +118,14 @@ export default function Navbar() {
                   className={`block px-3 py-2 rounded-lg transition-all duration-300 cursor-pointer hover:scale-105 ${
                     isActive(item.href)
                       ? 'bg-orange-500/25 text-orange-500 font-semibold hover:bg-orange-500/35 hover:shadow-lg hover:shadow-orange-500/30'
-                      : 'text-gray-400 hover:text-orange-500 hover:bg-orange-500/15 hover:scale-105 hover:shadow-lg hover:shadow-orange-500/20'
+                      : 'text-white hover:text-orange-500 hover:bg-orange-500/15 hover:scale-105 hover:shadow-lg hover:shadow-orange-500/20'
                   }`}
                   onClick={() => setIsOpen(false)}
                 >
                   {item.name}
                 </Link>
               ))}
-              <Link href="/contact" className="block w-full">
+              <Link href="/payment" className="block w-full">
                 <button className="w-full px-3 py-2 rounded-lg bg-gradient-to-r from-orange-500 to-orange-600 text-white font-semibold mt-4 transition-all duration-300 cursor-pointer hover:scale-105 hover:shadow-lg hover:shadow-orange-500/30">
                   Mulai Sekarang
                 </button>
