@@ -141,9 +141,9 @@ export default function Home() {
               className="flex flex-col sm:flex-row gap-4 justify-center"
             >
               <Link href="/products">
-                <AnimatedButton variant="primary" size="lg" className="min-w-max">
+                <AnimatedButton variant="primary" size="lg" className="px-6 py-3 min-w-max">
                   <span className="flex items-center gap-2">
-                    Jelajahi Produk <ArrowRight className="w-5 h-5" />
+                    Jelajahi Produk <ArrowRight className="w-5 h-5" aria-hidden="true"/>
                   </span>
                 </AnimatedButton>
               </Link>

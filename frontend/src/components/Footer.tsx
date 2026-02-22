@@ -232,6 +232,7 @@ export default function Footer() {
         whileHover={{ y: -3 }}
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         className="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-orange-600 hover:bg-orange-700 text-white flex items-center justify-center transition-all z-40 shadow-lg hover:shadow-orange-600/50"
+        aria-label="Scroll to top"
       >
         <ArrowRight className="w-5 h-5 -rotate-90" />
       </motion.button>
