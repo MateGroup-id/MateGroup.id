@@ -277,7 +277,7 @@ export default function ProductsPage() {
                   {/* Header */}
                   <div className="p-3 sm:p-4 border-b border-white/10">
                     <div className="flex justify-between items-start gap-2">
-                      <h3 className="text-lg sm:text-xl font-bold text-orange-400 px-0 py-0 group-hover:px-3 group-hover:py-1 border border-transparent rounded-full group-hover:border-orange-400 group-hover:bg-orange-400/10 transition-all duration-300 ease-out">
+                      <h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-orange-400 transition-colors">
                         {product.title}
                       </h3>
 

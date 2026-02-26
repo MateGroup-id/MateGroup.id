@@ -159,7 +159,7 @@ export default function ServicesPage() {
                       <Icon className="w-6 h-6 text-orange-400" />
                     </div>
                     
-                    <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-orange-400 transition-all">
+                    <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-orange-400 transition-colors">
                       {service.title}
                     </h3>
                     <p className="text-gray-400 text-sm mb-6">

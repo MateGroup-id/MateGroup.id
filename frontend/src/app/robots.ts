@@ -10,6 +10,5 @@ export default function robots(): MetadataRoute.Robots {
       },
     ],
     sitemap: 'https://mategroup.id/sitemap.xml',
-    host: 'https://mategroup.id',
   };
 }
