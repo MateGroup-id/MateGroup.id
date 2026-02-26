@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ShoppingCart, Lock, CreditCard, Shield, Clock, Mail, CheckCircle, Code, Smartphone, Brain, Zap, TrendingUp, Users } from 'lucide-react';
+import { ShoppingCart, Lock, CreditCard, Shield, Mail, CheckCircle, Code, Bot, Brain, Zap, TrendingUp, Users, MessageCircle } from 'lucide-react';
 import Link from 'next/link';
 import { ScrollHint } from '@/components/ScrollHint';
 
@@ -27,13 +27,13 @@ const availableServices: ServiceItem[] = [
     features: ['Aplikasi Next.js & React', 'Full-stack development', 'Cloud deployment'],
   },
   {
-    id: 'mobile-dev',
-    title: 'Aplikasi Mobile',
-    description: 'Solusi mobile native dan cross-platform dengan performa optimal.',
+    id: 'automation',
+    title: 'Otomasi & Bot',
+    description: 'Otomasi proses bisnis dan pengembangan bot cerdas berbasis AI.',
     price: 'Rp 800.000',
     priceValue: 800000,
-    icon: Smartphone,
-    features: ['iOS & Android', 'Cross-platform', 'UI/UX design'],
+    icon: Bot,
+    features: ['RPA & workflow automation', 'Chatbot & virtual assistant', 'Integrasi API & webhook'],
   },
   {
     id: 'ai-ml',
@@ -80,6 +80,21 @@ function formatRupiah(value: number): string {
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
   }).format(value);
+}
+
+function getWhatsAppUrl(service: ServiceItem | undefined): string {
+  const phone = '6285774932078';
+  if (!service) {
+    return `https://wa.me/${phone}?text=${encodeURIComponent('Halo MateGroup, saya ingin mengetahui lebih lanjut tentang layanan Anda.')}` ;
+  }
+  const priceText = service.priceValue > 0 ? formatRupiah(service.priceValue) : 'Custom (hubungi kami)';
+  const message = `Halo MateGroup, saya ingin memesan layanan berikut:
+
+*Layanan:* ${service.title}
+*Harga:* ${priceText}
+
+Mohon info lebih lanjut. Terima kasih!`;
+  return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 }
 
 export default function PaymentPage() {
@@ -240,22 +255,24 @@ export default function PaymentPage() {
                   </div>
                 )}
 
-                {/* Disabled Checkout Button */}
+                {/* Checkout Button */}
                 <div className="mt-6 space-y-3">
-                  <button
-                    disabled
-                    className="w-full py-3 px-6 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 bg-gray-700/50 text-gray-400 border border-gray-600/50 cursor-not-allowed"
+                  <a
+                    href={getWhatsAppUrl(selected)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`w-full py-3 px-6 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 transition-all duration-300 ${
+                      selected
+                        ? 'bg-green-600 hover:bg-green-500 text-white shadow-lg shadow-green-500/20 cursor-pointer'
+                        : 'bg-orange-500/20 hover:bg-orange-500/30 text-orange-400 border border-orange-500/30 cursor-pointer'
+                    }`}
                   >
-                    <Clock className="w-4 h-4" />
-                    Coming Soon
-                  </button>
+                    <MessageCircle className="w-4 h-4" />
+                    {selected ? 'Pesan via WhatsApp' : 'Hubungi Kami'}
+                  </a>
 
                   <p className="text-xs text-gray-500 text-center leading-relaxed">
-                    Sistem pembayaran sedang dalam proses integrasi. Untuk pemesanan saat ini, silakan{' '}
-                    <Link href="/contact" className="text-orange-400 hover:text-orange-300 underline">
-                      hubungi kami
-                    </Link>{' '}
-                    langsung.
+                    Anda akan diarahkan ke WhatsApp untuk konfirmasi pesanan bersama tim kami.
                   </p>
                 </div>
 
