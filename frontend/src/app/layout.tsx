@@ -75,9 +75,6 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  alternates: {
-    canonical: 'https://mategroup.id',
-  },
 };
 
 export default function RootLayout({
@@ -116,9 +113,6 @@ export default function RootLayout({
                 contactType: 'customer service',
                 availableLanguage: ['Indonesian', 'English'],
               },
-              sameAs: [
-                'https://mategroup.id',
-              ],
             }),
           }}
         />
@@ -132,11 +126,6 @@ export default function RootLayout({
               '@type': 'WebSite',
               name: 'MateGroup',
               url: 'https://mategroup.id',
-              potentialAction: {
-                '@type': 'SearchAction',
-                target: 'https://mategroup.id/products?q={search_term_string}',
-                'query-input': 'required name=search_term_string',
-              },
             }),
           }}
         />

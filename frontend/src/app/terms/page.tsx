@@ -64,6 +64,7 @@ export default function TermsPage() {
                     height: "1.5em",
                   }}
                   title="Indonesia"
+                  aria-label="Indonesia flag"
                 />
                 Bahasa Indonesia
               </h2>
@@ -172,6 +173,7 @@ export default function TermsPage() {
                     height: "1.5em",
                   }}
                   title="United Kingdom"
+                  aria-label="United Kingdom flag"
                 />
                 English
               </h2>

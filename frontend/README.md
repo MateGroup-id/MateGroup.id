@@ -1,93 +1,35 @@
-# MateGroup - Enterprise SaaS Solutions & Digital Services
+# MateGroup
 
-## 🚀 About MateGroup
+MateGroup adalah perusahaan teknologi asal Indonesia yang berfokus pada pengembangan produk SaaS berbasis AI dan layanan digital end-to-end. Kami hadir untuk membantu bisnis dan individu bertransformasi secara digital melalui solusi yang inovatif, terukur, dan berdampak nyata.
 
-MateGroup is a modern technology company specializing in AI-powered SaaS solutions and comprehensive digital services. We transform businesses through innovative products and expert consulting.
+## Apa itu MateGroup?
 
-## 📱 What We Offer
+MateGroup didirikan dengan visi menjadi mitra teknologi terpercaya bagi bisnis di Indonesia dan Asia Tenggara. Kami menggabungkan keahlian di bidang kecerdasan buatan, pengembangan perangkat lunak, dan konsultasi digital untuk menghadirkan produk dan layanan yang relevan dengan kebutuhan industri masa kini.
 
-### SaaS Products (9+)
-We've developed a diverse portfolio of SaaS products across multiple categories:
+## Produk Unggulan
 
-#### 🤖 AI & Intelligent Solutions
-- **CourseMate** - AI-powered course recommendation engine
-- **MentalMate v1 & v2** - Mental health companion with generative AI
-- **EnergyMate** - Smart energy management using ML
-- **CheckMate** - AI product insights and quality assessment
-- **CoMate** - Meta Llama AI-powered collaborative platform
+Kami telah mengembangkan lebih dari 9 produk SaaS aktif yang menjangkau berbagai segmen:
 
-#### 🎓 Education & Learning
-- **EduMate** - Interactive learning platform with student monitoring
+- **CoMate** — Platform kolaborasi bertenaga Meta Llama AI
+- **MentyMate** — Pendamping kesehatan mental dengan AI generatif
+- **EduMate** — Platform pembelajaran interaktif dengan pemantauan siswa
+- **CourseMate** — Rekomendasi kursus berbasis AI
+- **EnergyMate** — Manajemen energi cerdas dengan machine learning
+- **CheckMate** — Analisis kualitas produk berbasis AI
+- **XportMate** — Fasilitasi ekspor dan perdagangan digital
+- **EkrafMate** — Platform pencocokan talenta kreatif
 
-#### 💼 Enterprise & Marketplace
-- **XportMate** - Digital export and trade facilitation
-- **EkrafMate** - Creative talent matching platform
+## Layanan
 
-### Services
-We provide end-to-end digital services:
-- **Web Development** - Modern full-stack applications
-- **Mobile App Development** - iOS, Android, and cross-platform
-- **AI & Machine Learning** - Custom ML solutions
-- **SaaS Development** - Build and launch your SaaS
-- **Digital Consulting** - Strategic guidance
-- **Team Augmentation** - Extend your development capacity
+Selain produk SaaS, kami menyediakan layanan digital profesional:
 
-## 🌐 Website Structure
+- Pengembangan web & aplikasi mobile
+- Solusi AI & machine learning custom
+- Pengembangan dan peluncuran produk SaaS
+- Konsultasi digital & strategi teknologi
+- Team augmentation
 
-### Pages
-- **Home** (`/`) - Company landing page with key information
-- **Products** (`/products`) - Showcase of all SaaS products
-- **Services** (`/services`) - Detailed service offerings
-- **About** (`/about`) - Company information and values
-- **Contact** (`/contact`) - Contact form and information
-
-### Components
-- **Navbar** - Navigation with mobile menu support
-- **Footer** - Site footer with links and contact info
-
-## 🛠️ Tech Stack
-
-- **Framework**: Next.js 16.1.1
-- **React**: 19.2.3
-- **Styling**: Tailwind CSS 4
-- **Animations**: Framer Motion
-- **Icons**: Lucide React, React Icons
-- **Language**: TypeScript
-
-## 📦 Installation & Setup
-
-```bash
-# Install dependencies
-pnpm install
-
-# Run development server
-pnpm dev
-
-# Build for production
-pnpm build
-
-# Start production server
-pnpm start
-```
-
-The site will be available at `http://localhost:3000`
-
-## 🎨 Design Features
-
-- Modern gradient designs with cyan and purple accents
-- Smooth animations with Framer Motion
-- Responsive design for all devices
-- Glass morphism effects
-- Dark theme optimized for SaaS aesthetics
-
-## 📊 Statistics
-
-- **9+** Active SaaS Products
-- **5+** Hackathon Awards
-- **10K+** Users Impacted
-- **Top Rankings** in Industry Awards
-
-## 🏆 Notable Achievements
+## Pencapaian
 
 - 🏆 Top 5 Bangkit Academy 2024 Capstone
 - 🥇 Microsoft Online Hackathon 2025 Winner
@@ -97,13 +39,13 @@ The site will be available at `http://localhost:3000`
 - 🎯 Top 20 Hackinfest Sucofindo 2025
 - 🚀 Top 50 (Rank 22) Meta Llama Project Incubator
 
-## 📧 Contact
+## Kontak
 
-- Email: contact@mategroup.com
-- Website: [mategroup.com](/)
-- Location: Indonesia
+- Website: [mategroup.id](https://mategroup.id)
+- Email: support@mategroup.id
+- Lokasi: Indonesia
 
-## 📝 License
+---
 
-All rights reserved © 2026 MateGroup
+© 2026 MateGroup. All rights reserved.
 
